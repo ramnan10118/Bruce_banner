@@ -29,13 +29,13 @@ export default function BannerGenerator() {
       alt: 'Red Motorcycle'
     },
     footerText: 'Acko General Insurance Limited | IRDAI Reg no. 157 | UID: 5394 | Two Wheeler Package Policy IRDAN157RP0002V01201819 for more details visit www.acko.com | *T&Cs Apply',
-    width: 1080,
-    height: 1920
+    width: 810,
+    height: 1440
   }
 
   return (
     <div className="min-h-screen flex items-center justify-center p-8">
-      <div style={{ transform: 'scale(0.5)' }}>
+      <div style={{ transform: 'scale(0.75)' }}>
         <Banner {...exampleBanner} />
       </div>
     </div>

@@ -67,19 +67,19 @@ export default function Banner({
     >
       {/* Logo */}
       {logo && (
-        <div className="absolute" style={{ top: 33, right: 36 }}>
-          <img src={logo.src} alt={logo.alt} style={{ width: 227, height: 75 }} />
+        <div className="absolute" style={{ top: 25, right: 27 }}>
+          <img src={logo.src} alt={logo.alt} style={{ width: 170, height: 56 }} />
         </div>
       )}
 
       {/* Main Content */}
-      <div className="relative" style={{ padding: '217px 88px' }}>
+      <div className="relative" style={{ padding: '163px 66px' }}>
         {/* Text Content */}
         <div>
           {/* Main Title */}
           <h1 className="leading-tight" 
             style={{ 
-              fontSize: '150px', 
+              fontSize: '112px',
               lineHeight: '1.2',
               fontWeight: 600
             }}
@@ -112,9 +112,9 @@ export default function Banner({
           <p 
             className="text-white"
             style={{ 
-              fontSize: '66px',
-              marginTop: '100px',
-              maxWidth: '819px',
+              fontSize: '50px',
+              marginTop: '75px',
+              maxWidth: '614px',
               lineHeight: '1.2',
               fontWeight: 400
             }}
@@ -129,7 +129,7 @@ export default function Banner({
         <div 
           className="relative"
           style={{ 
-            marginTop: '150px',
+            marginTop: '112px',
             width: 'fit-content',
             height: 'fit-content',
             position: 'relative',
@@ -140,16 +140,16 @@ export default function Banner({
             className="flex items-center justify-center text-white font-semibold relative overflow-hidden"
             style={{
               background: 'linear-gradient(180deg, #3E9649 0%, #35823F 100%)',
-              fontSize: '60px',
-              borderRadius: '51px',
+              fontSize: '45px',
+              borderRadius: '38px',
               fontFamily: 'EuclidCircularB',
               fontWeight: 600,
               whiteSpace: 'nowrap',
-              padding: '12px 40px 12px 40px',
+              padding: '9px 30px',
               boxShadow: `
-                inset 0px 3px 6px rgba(255, 255, 255, 0.25),
-                inset 0px -3px 6px rgba(0, 0, 0, 0.15),
-                0px 4px 9px rgba(0, 0, 0, 0.2)
+                inset 0px 2px 4px rgba(255, 255, 255, 0.25),
+                inset 0px -2px 4px rgba(0, 0, 0, 0.15),
+                0px 3px 7px rgba(0, 0, 0, 0.2)
               `,
               border: '1px solid rgba(255, 255, 255, 0.1)',
               cursor: 'pointer'
@@ -177,10 +177,10 @@ export default function Banner({
           <div 
             className="absolute overflow-hidden"
             style={{ 
-              bottom: '-400px',
-              right: '-150px',
-              width: '800px',
-              height: '800px',
+              bottom: '-300px',
+              right: '-140px',
+              width: '650px',
+              height: '650px',
               transform: 'scale(1.4)',
               transformOrigin: 'bottom right'
             }}
@@ -190,8 +190,8 @@ export default function Banner({
               alt={productImage.alt}
               className="w-full h-full object-contain"
               style={{
-                filter: 'drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.25))',
-                transform: 'translateX(200px) translateY(100px)',
+                filter: 'drop-shadow(0px 7px 15px rgba(0, 0, 0, 0.25))',
+                transform: 'translateX(150px) translateY(75px)',
               }}
             />
           </div>
@@ -207,7 +207,7 @@ export default function Banner({
             left: 0,
             right: 0,
             width: '100%',
-            padding: '20px',
+            padding: '15px',
             background: 'linear-gradient(0deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.1) 100%)',
             borderTop: '1px solid rgba(255, 255, 255, 0.2)',
             zIndex: 10
@@ -215,7 +215,7 @@ export default function Banner({
         >
           <p 
             style={{ 
-              fontSize: '22px',
+              fontSize: '17px',
               lineHeight: '1.4',
               color: 'rgba(255, 255, 255, 0.8)',
               textAlign: 'center',
