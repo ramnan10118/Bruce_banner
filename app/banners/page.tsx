@@ -3,7 +3,7 @@
 import Banner from '../components/Banner'
 
 export default function BannerGenerator() {
-  const exampleBanner = {
+  const purpleBanner = {
     primaryText: ['Ride', 'and', 'more!'],
     highlightedText: ['secure', 'save'],
     subtitle: {
@@ -33,10 +33,37 @@ export default function BannerGenerator() {
     height: 1440
   }
 
+  const blueBanner = {
+    ...purpleBanner,
+    backgroundColor: '#4169E1', // Royal Blue
+    productImage: {
+      src: '/images/scooter.png',
+      alt: 'Scooter'
+    },
+    imageControls: {
+      width: 400,
+      height: 600,
+      bottom: -282,
+      right: -100,
+      scale: 1.4,
+      translateX: 50,
+      translateY: 75
+    }
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center p-8">
-      <div style={{ transform: 'scale(0.75)' }}>
-        <Banner {...exampleBanner} />
+    <div className="min-h-screen flex items-center justify-center gap-8 p-8">
+      <div className="relative">
+        <h2 className="absolute -top-16 left-1/2 -translate-x-1/2 text-4xl font-bold p-4 bg-purple-100 rounded-lg shadow-sm z-10">Purple Banner</h2>
+        <div style={{ transform: 'scale(0.75)' }}>
+          <Banner {...purpleBanner} />
+        </div>
+      </div>
+      <div className="relative">
+        <h2 className="absolute -top-16 left-1/2 -translate-x-1/2 text-4xl font-bold p-4 bg-blue-100 rounded-lg shadow-sm z-10">Blue Banner</h2>
+        <div style={{ transform: 'scale(0.75)' }}>
+          <Banner {...blueBanner} />
+        </div>
       </div>
     </div>
   )

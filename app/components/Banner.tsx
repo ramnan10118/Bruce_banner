@@ -39,6 +39,17 @@ type BannerProps = {
   // Layout
   width?: number        // Banner width in pixels
   height?: number       // Banner height in pixels
+
+  // Image controls
+  imageControls?: {
+    width: number
+    height: number
+    bottom: number
+    right: number
+    scale: number
+    translateX: number
+    translateY: number
+  }
 } 
 
 export default function Banner({
@@ -54,14 +65,29 @@ export default function Banner({
   footerText,
   width = 1080,
   height = 1920,
+  imageControls,
 }: BannerProps) {
+  // Function to adjust color brightness
+  const adjustBrightness = (color: string, amount: number) => {
+    const hex = color.replace('#', '');
+    const r = Math.min(255, Math.max(0, parseInt(hex.slice(0, 2), 16) + amount));
+    const g = Math.min(255, Math.max(0, parseInt(hex.slice(2, 4), 16) + amount));
+    const b = Math.min(255, Math.max(0, parseInt(hex.slice(4, 6), 16) + amount));
+    return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+  };
+
+  // Generate gradient colors
+  const color1 = backgroundColor;
+  const color2 = adjustBrightness(backgroundColor, -30);
+  const color3 = adjustBrightness(backgroundColor, -40);
+
   return (
     <div 
       className="relative overflow-hidden rounded-lg"
       style={{ 
         width,
         height,
-        background: `linear-gradient(127deg, rgba(158,87,189,1) 0%, rgba(94,47,127,1) 66%, rgba(85,41,120,1) 94%)`,
+        background: `linear-gradient(127deg, ${color1} 0%, ${color2} 66%, ${color3} 94%)`,
         fontFamily: 'EuclidCircularB'
       }}
     >
@@ -177,11 +203,11 @@ export default function Banner({
           <div 
             className="absolute overflow-hidden"
             style={{ 
-              bottom: '-300px',
-              right: '-140px',
-              width: '650px',
-              height: '650px',
-              transform: 'scale(1.4)',
+              bottom: `${imageControls?.bottom || -242}px`,
+              right: `${imageControls?.right || -110}px`,
+              width: `${imageControls?.width || 560}px`,
+              height: `${imageControls?.height || 560}px`,
+              transform: `scale(${imageControls?.scale || 1.4})`,
               transformOrigin: 'bottom right'
             }}
           >
@@ -191,7 +217,7 @@ export default function Banner({
               className="w-full h-full object-contain"
               style={{
                 filter: 'drop-shadow(0px 7px 15px rgba(0, 0, 0, 0.25))',
-                transform: 'translateX(150px) translateY(75px)',
+                transform: `translateX(${imageControls?.translateX || 150}px) translateY(${imageControls?.translateY || 75}px)`,
               }}
             />
           </div>
