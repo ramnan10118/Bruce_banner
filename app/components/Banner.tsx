@@ -50,6 +50,48 @@ type BannerProps = {
     translateY: number
     scaleX?: number
   }
+
+  // Custom styles
+  customStyles?: {
+    mainText?: {
+      fontSize: string
+      lineHeight: string
+      marginTop: string
+      maxWidth?: string
+      textAlign?: string
+    }
+    subtitle?: {
+      fontSize: string
+      lineHeight: string
+      marginTop: string
+      maxWidth?: string
+      textAlign?: string
+    }
+    logo?: {
+      width: string
+      height: string
+      top: string
+      right: string
+    }
+    cta?: {
+      fontSize: string
+      padding: string
+      position?: Position
+      right?: string
+      top?: string
+      width?: string
+      transform?: string
+    }
+    footer?: {
+      fontSize: string
+      padding: string
+      bottom: string
+    }
+    container?: {
+      position: Position
+      paddingLeft: string
+    }
+  }
 } 
 
 export default function Banner({
@@ -65,6 +107,7 @@ export default function Banner({
   width = 1080,
   height = 1920,
   imageControls,
+  customStyles
 }: BannerProps) {
   // Function to adjust color brightness
   const adjustBrightness = (color: string, amount: number) => {
@@ -92,23 +135,46 @@ export default function Banner({
     >
       {/* Logo */}
       {logo && (
-        <div className="absolute" style={{ top: 25, right: 27 }}>
-          <img src={logo.src} alt={logo.alt} style={{ width: 170, height: 56 }} />
+        <div 
+          className="absolute" 
+          style={{ 
+            top: customStyles?.logo?.top || '25px',
+            right: customStyles?.logo?.right || '27px'
+          }}
+        >
+          <img 
+            src={logo.src} 
+            alt={logo.alt} 
+            style={{ 
+              width: customStyles?.logo?.width || '170px',
+              height: customStyles?.logo?.height || '56px'
+            }} 
+          />
         </div>
       )}
 
       {/* Main Content */}
-      <div className="relative" style={{ padding: '163px 66px' }}>
+      <div 
+        className="relative" 
+        style={{ 
+          padding: customStyles?.mainText?.marginTop ? '0 20px' : '163px 66px',
+          position: customStyles?.container?.position || 'relative',
+          paddingLeft: customStyles?.container?.paddingLeft || '20px'
+        }}
+      >
         {/* Text Content */}
         <div>
           {/* Main Title */}
           <h1 
             className="leading-tight" 
             style={{ 
-              fontSize: '112px',
-              lineHeight: '1.2',
+              fontSize: customStyles?.mainText?.fontSize || '112px',
+              lineHeight: customStyles?.mainText?.lineHeight || '1.2',
               fontWeight: 600,
-              color: primaryColor
+              color: primaryColor,
+              marginTop: customStyles?.mainText?.marginTop || '0',
+              maxWidth: customStyles?.mainText?.maxWidth,
+              textAlign: customStyles?.mainText?.textAlign || 'left'
             }}
           >
             {mainText}
@@ -118,11 +184,12 @@ export default function Banner({
           <p 
             className="text-white"
             style={{ 
-              fontSize: '50px',
-              marginTop: '75px',
-              maxWidth: '614px',
-              lineHeight: '1.2',
-              fontWeight: 400
+              fontSize: customStyles?.subtitle?.fontSize || '50px',
+              marginTop: customStyles?.subtitle?.marginTop || '75px',
+              maxWidth: customStyles?.subtitle?.maxWidth || '614px',
+              lineHeight: customStyles?.subtitle?.lineHeight || '1.2',
+              fontWeight: 400,
+              textAlign: customStyles?.subtitle?.textAlign || 'left'
             }}
           >
             {subtitle.prefix}{' '}
@@ -133,12 +200,12 @@ export default function Banner({
 
         {/* CTA Button */}
         <div 
-          className="relative"
           style={{ 
-            marginTop: '112px',
-            width: 'fit-content',
-            height: 'fit-content',
-            position: 'relative',
+            position: customStyles?.cta?.position || 'relative',
+            right: customStyles?.cta?.right,
+            top: customStyles?.cta?.top,
+            width: customStyles?.cta?.width || 'fit-content',
+            transform: customStyles?.cta?.transform,
             zIndex: 5
           }}
         >
@@ -146,12 +213,12 @@ export default function Banner({
             className="flex items-center justify-center text-white font-semibold relative overflow-hidden"
             style={{
               background: `linear-gradient(180deg, ${adjustBrightness(ctaButton.backgroundColor, 20)} 0%, ${ctaButton.backgroundColor} 100%)`,
-              fontSize: '45px',
+              fontSize: customStyles?.cta?.fontSize || '45px',
               borderRadius: '38px',
               fontFamily: 'EuclidCircularB',
               fontWeight: 600,
               whiteSpace: 'nowrap',
-              padding: '9px 30px',
+              padding: customStyles?.cta?.padding || '9px 30px',
               boxShadow: `
                 inset 0px 2px 4px rgba(255, 255, 255, 0.25),
                 inset 0px -2px 4px rgba(0, 0, 0, 0.15),
@@ -161,19 +228,6 @@ export default function Banner({
               cursor: 'pointer'
             }}
           >
-            {/* Overlay gradient for 3D effect */}
-            <div 
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                height: '50%',
-                background: 'linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 100%)',
-                borderTopLeftRadius: '51px',
-                borderTopRightRadius: '51px'
-              }}
-            />
             <span style={{ position: 'relative', zIndex: 1 }}>{ctaButton.text}</span>
           </button>
         </div>
@@ -209,11 +263,11 @@ export default function Banner({
         <div 
           style={{
             position: 'absolute',
-            bottom: 0,
+            bottom: customStyles?.footer?.bottom || '0',
             left: 0,
             right: 0,
             width: '100%',
-            padding: '15px',
+            padding: customStyles?.footer?.padding || '15px',
             background: 'linear-gradient(0deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.1) 100%)',
             borderTop: '1px solid rgba(255, 255, 255, 0.2)',
             zIndex: 10
@@ -221,7 +275,7 @@ export default function Banner({
         >
           <p 
             style={{ 
-              fontSize: '17px',
+              fontSize: customStyles?.footer?.fontSize || '17px',
               lineHeight: '1.4',
               color: 'rgba(255, 255, 255, 0.8)',
               textAlign: 'center',
