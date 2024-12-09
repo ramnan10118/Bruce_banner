@@ -1,7 +1,6 @@
 type BannerProps = {
-  // Main text content split into parts for different styling
-  primaryText: string[]    // e.g. ["Ride", "and", "more!"]
-  highlightedText: string[] // e.g. ["secure", "save"]
+  // Main text content
+  mainText: string      // e.g. "Ride secure and save more!"
   
   // Subtitle/description text
   subtitle: {
@@ -12,8 +11,8 @@ type BannerProps = {
 
   // Colors
   backgroundColor: string  // e.g. "#663399" (purple)
-  primaryColor: string    // e.g. "#FFD700" (gold/yellow for "Ride and more!")
-  highlightTextColor: string // e.g. "#FFFFFF" (white text on green)
+  primaryColor: string    // e.g. "#FFD700" (gold/yellow for text)
+  highlightTextColor: string // e.g. "#FFFFFF" (white text)
 
   // CTA (Call to Action) button
   ctaButton: {
@@ -49,12 +48,12 @@ type BannerProps = {
     scale: number
     translateX: number
     translateY: number
+    scaleX?: number
   }
 } 
 
 export default function Banner({
-  primaryText,
-  highlightedText,
+  mainText,
   subtitle,
   backgroundColor,
   primaryColor,
@@ -103,35 +102,16 @@ export default function Banner({
         {/* Text Content */}
         <div>
           {/* Main Title */}
-          <h1 className="leading-tight" 
+          <h1 
+            className="leading-tight" 
             style={{ 
               fontSize: '112px',
               lineHeight: '1.2',
-              fontWeight: 600
+              fontWeight: 600,
+              color: primaryColor
             }}
           >
-            {primaryText.map((text, index) => (
-              <span key={index} style={{ color: primaryColor }}>
-                {text}{' '}
-              </span>
-            )).reduce((prev, curr, i) => {
-              if (i < highlightedText.length) {
-                return [...prev, curr, 
-                  <span 
-                    key={`highlight-${i}`} 
-                    style={{ 
-                      color: highlightTextColor,
-                      display: 'inline',
-                      marginRight: '24px',
-                      fontWeight: 600
-                    }}
-                  >
-                    {highlightedText[i]}{' '}
-                  </span>
-                ];
-              }
-              return [...prev, curr];
-            }, [] as React.ReactNode[])}
+            {mainText}
           </h1>
 
           {/* Subtitle */}
@@ -165,7 +145,7 @@ export default function Banner({
           <button
             className="flex items-center justify-center text-white font-semibold relative overflow-hidden"
             style={{
-              background: 'linear-gradient(180deg, #3E9649 0%, #35823F 100%)',
+              background: `linear-gradient(180deg, ${adjustBrightness(ctaButton.backgroundColor, 20)} 0%, ${ctaButton.backgroundColor} 100%)`,
               fontSize: '45px',
               borderRadius: '38px',
               fontFamily: 'EuclidCircularB',
@@ -217,7 +197,7 @@ export default function Banner({
               className="w-full h-full object-contain"
               style={{
                 filter: 'drop-shadow(0px 7px 15px rgba(0, 0, 0, 0.25))',
-                transform: `translateX(${imageControls?.translateX || 150}px) translateY(${imageControls?.translateY || 75}px)`,
+                transform: `translateX(${imageControls?.translateX || 150}px) translateY(${imageControls?.translateY || 75}px) scaleX(${imageControls?.scaleX || 1})`,
               }}
             />
           </div>
