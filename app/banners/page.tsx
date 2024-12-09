@@ -13,7 +13,6 @@ export default function BannerGenerator() {
     },
     backgroundColor: '#9E57BD',
     primaryColor: '#FFD700',
-    highlightColor: '#35823F',
     highlightTextColor: '#FFFFFF',
     ctaButton: {
       text: 'Check now',
@@ -26,10 +25,10 @@ export default function BannerGenerator() {
       alt: 'ACKO Logo'
     },
     productImage: {
-      src: '/bike.png',
+      src: '/images/bike.png',
       alt: 'Red Motorcycle'
     },
-    footerText: 'Acko General Insurance Limited| IRDAI Reg no. 157 | UID: 5394 | Two Wheeler Package Policy IRDAN157RP0002V01201819 for more details visit www.acko.com|*T&Cs Apply',
+    footerText: 'Acko General Insurance Limited | IRDAI Reg no. 157 | UID: 5394 | Two Wheeler Package Policy IRDAN157RP0002V01201819 for more details visit www.acko.com | *T&Cs Apply',
     width: 1080,
     height: 1920
   }

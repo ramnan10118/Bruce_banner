@@ -20,7 +20,7 @@ type BannerProps = {
     text: string         // e.g. "Check now"
     backgroundColor: string // e.g. "#228B22" (green)
     textColor: string    // e.g. "#FFFFFF"
-    href: string         // Link URL
+    href: string         // e.g. "#"
   }
 
   // Images
@@ -81,7 +81,7 @@ export default function Banner({
             style={{ 
               fontSize: '150px', 
               lineHeight: '1.2',
-              fontWeight: 600 // SemiBold
+              fontWeight: 600
             }}
           >
             {primaryText.map((text, index) => (
@@ -97,7 +97,7 @@ export default function Banner({
                       color: highlightTextColor,
                       display: 'inline',
                       marginRight: '24px',
-                      fontWeight: 600 // SemiBold
+                      fontWeight: 600
                     }}
                   >
                     {highlightedText[i]}{' '}
@@ -116,7 +116,7 @@ export default function Banner({
               marginTop: '100px',
               maxWidth: '819px',
               lineHeight: '1.2',
-              fontWeight: 400 // Regular
+              fontWeight: 400
             }}
           >
             {subtitle.prefix}{' '}
@@ -129,85 +129,104 @@ export default function Banner({
         <div 
           className="relative"
           style={{ 
-            marginTop: '160px',
-            width: '486px',
-            height: '137px'
+            marginTop: '150px',
+            width: 'fit-content',
+            height: 'fit-content',
+            position: 'relative',
+            zIndex: 5
           }}
         >
-          <a
-            href={ctaButton.href}
-            className="w-full h-full flex items-center justify-center text-white font-semibold"
+          <button
+            className="flex items-center justify-center text-white font-semibold relative overflow-hidden"
             style={{
-              background: '#35823F',
-              fontSize: '80px',
-              borderRadius: '68.5px',
-              boxShadow: '0px 5px 6px rgba(12, 40, 68, 0.2)',
+              background: 'linear-gradient(180deg, #3E9649 0%, #35823F 100%)',
+              fontSize: '60px',
+              borderRadius: '51px',
               fontFamily: 'EuclidCircularB',
               fontWeight: 600,
               whiteSpace: 'nowrap',
-              padding: '0 40px'
+              padding: '12px 40px 12px 40px',
+              boxShadow: `
+                inset 0px 3px 6px rgba(255, 255, 255, 0.25),
+                inset 0px -3px 6px rgba(0, 0, 0, 0.15),
+                0px 4px 9px rgba(0, 0, 0, 0.2)
+              `,
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              cursor: 'pointer'
             }}
           >
-            {ctaButton.text}
-          </a>
+            {/* Overlay gradient for 3D effect */}
+            <div 
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: '50%',
+                background: 'linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 100%)',
+                borderTopLeftRadius: '51px',
+                borderTopRightRadius: '51px'
+              }}
+            />
+            <span style={{ position: 'relative', zIndex: 1 }}>{ctaButton.text}</span>
+          </button>
         </div>
 
         {/* Product Image */}
         {productImage && (
           <div 
-            className="absolute"
+            className="absolute overflow-hidden"
             style={{ 
-              bottom: 0,
-              right: 0,
-              width: '1382px',
-              height: '776px'
+              bottom: '-400px',
+              right: '-150px',
+              width: '800px',
+              height: '800px',
+              transform: 'scale(1.4)',
+              transformOrigin: 'bottom right'
             }}
           >
             <img 
               src={productImage.src} 
               alt={productImage.alt}
               className="w-full h-full object-contain"
+              style={{
+                filter: 'drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.25))',
+                transform: 'translateX(200px) translateY(100px)',
+              }}
             />
           </div>
         )}
-
-        {/* Footer Text */}
-        {footerText && (
-          <>
-            <div 
-              className="absolute w-full"
-              style={{ 
-                bottom: '92px',
-                left: '48px',
-                right: '48px',
-                height: '2px',
-                background: 'rgba(255, 255, 255, 0.3)'
-              }}
-            />
-            <div 
-              className="absolute"
-              style={{ 
-                bottom: '0',
-                left: '-17px',
-                right: 0,
-                padding: '0 48px 0',
-                textAlign: 'center'
-              }}
-            >
-              <p 
-                className="text-white/80"
-                style={{ 
-                  fontSize: '22px',
-                  maxWidth: '1115px',
-                  margin: '0 auto'
-                }}
-              >
-                {footerText}
-              </p>
-            </div>
-          </>
-        )}
       </div>
+
+      {/* Disclaimer Text */}
+      {footerText && (
+        <div 
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            width: '100%',
+            padding: '20px',
+            background: 'linear-gradient(0deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.1) 100%)',
+            borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+            zIndex: 10
+          }}
+        >
+          <p 
+            style={{ 
+              fontSize: '22px',
+              lineHeight: '1.4',
+              color: 'rgba(255, 255, 255, 0.8)',
+              textAlign: 'center',
+              maxWidth: '90%',
+              margin: '0 auto'
+            }}
+          >
+            {footerText}
+          </p>
+        </div>
+      )}
     </div>
   );
 } 
