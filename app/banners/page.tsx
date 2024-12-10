@@ -93,25 +93,319 @@ export default function BannerGenerator() {
     }
   }
 
+  // Medium Rectangle - Purple Theme (300x250)
+  const mediumRectangleBanner = {
+    mainText: 'Ride\nSafe!',
+    subtitle: {
+      prefix: 'Get',
+      emphasis: '85%',
+      suffix: 'off'
+    },
+    backgroundColor: '#9E57BD',
+    primaryColor: '#FFD700',
+    highlightTextColor: '#FFFFFF',
+    ctaButton: {
+      text: 'Insure Now',
+      backgroundColor: '#35823F',
+      textColor: '#FFFFFF',
+      href: '#'
+    },
+    logo: {
+      src: '/logo.svg',
+      alt: 'ACKO Logo'
+    },
+    productImage: {
+      src: '/images/bike.png',
+      alt: 'Red Motorcycle'
+    },
+    footerText: 'T&Cs Apply',
+    width: 300,
+    height: 250,
+    customStyles: {
+      container: {
+        padding: '15px'
+      },
+      logo: {
+        width: '60px',
+        height: 'auto',
+        marginBottom: '5px'
+      },
+      mainText: {
+        fontSize: '32px',
+        lineHeight: '1',
+        fontWeight: 600,
+        marginTop: '0px',
+        maxWidth: '200px'
+      },
+      subtitle: {
+        container: {
+          marginTop: '20px'
+        },
+        text: {
+          fontSize: '14px',
+          lineHeight: '1.2',
+          marginTop: '0'
+        },
+        emphasis: {
+          fontSize: '16px',
+          fontWeight: 600
+        }
+      },
+      ctaButton: {
+        container: {
+          marginTop: '28px'
+        },
+        button: {
+          fontSize: '14px',
+          padding: '8px 16px',
+          borderRadius: '24px'
+        }
+      },
+      footer: {
+        fontSize: '8px',
+        marginTop: '10px',
+        padding: '4px',
+        background: 'linear-gradient(0deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.1) 100%)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+        height: '25px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }
+    },
+    imageControls: {
+      width: 260,
+      height: 160,
+      bottom: -40,
+      right: -120,
+      scale: 1,
+      translateX: 2,
+      translateY: 2
+    }
+  }
+
+  // Medium Rectangle - Blue Theme (300x250)
+  const blueRectangleBanner = {
+    mainText: 'Smart\nRides!',
+    subtitle: {
+      prefix: 'Get',
+      emphasis: '85%',
+      suffix: 'off'
+    },
+    backgroundColor: '#4169E1',
+    primaryColor: '#FFD700',
+    highlightTextColor: '#FFFFFF',
+    ctaButton: {
+      text: 'Start Now',
+      backgroundColor: '#FF7A00',
+      textColor: '#FFFFFF',
+      href: '#'
+    },
+    logo: {
+      src: '/logo.svg',
+      alt: 'ACKO Logo'
+    },
+    productImage: {
+      src: '/images/scooter.png',
+      alt: 'Scooter'
+    },
+    footerText: 'T&Cs Apply',
+    width: 300,
+    height: 250,
+    customStyles: {
+      container: {
+        padding: '15px'
+      },
+      logo: {
+        width: '60px',
+        height: 'auto',
+        marginBottom: '5px'
+      },
+      mainText: {
+        fontSize: '32px',
+        lineHeight: '1',
+        fontWeight: 600,
+        marginTop: '5px',
+        maxWidth: '100px'
+      },
+      subtitle: {
+        container: {
+          marginTop: '15px'
+        },
+        text: {
+          fontSize: '14px',
+          lineHeight: '1.2',
+          marginTop: '0'
+        },
+        emphasis: {
+          fontSize: '16px',
+          fontWeight: 600
+        }
+      },
+      ctaButton: {
+        container: {
+          marginTop: '25px'
+        },
+        button: {
+          fontSize: '14px',
+          padding: '8px 16px',
+          borderRadius: '24px'
+        }
+      },
+      footer: {
+        fontSize: '8px',
+        marginTop: '10px',
+        padding: '4px',
+        background: 'linear-gradient(0deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.1) 100%)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+        height: '15px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }
+    },
+    imageControls: {
+      width: 260,
+      height: 160,
+      bottom: -20,
+      right: -100,
+      scale: 1,
+      translateX: 2,
+      translateY: 2
+    }
+  }
+
+  const tealRectangleBanner = {
+    mainText: 'Smart\nRides!',
+    subtitle: {
+      prefix: 'Get',
+      emphasis: '85%',
+      suffix: 'off'
+    },
+    backgroundColor: '#2A4858',  // Dark Teal from teal banner
+    primaryColor: '#FFD700',
+    highlightTextColor: '#FFFFFF',
+    ctaButton: {
+      text: 'Start Now',
+      backgroundColor: '#00B4D8',  // Bright Teal from teal banner
+      textColor: '#FFFFFF',
+      href: '#'
+    },
+    logo: {
+      src: '/logo.svg',
+      alt: 'ACKO Logo'
+    },
+    productImage: {
+      src: '/images/Health_man1.png',
+      alt: 'Health Insurance Man'
+    },
+    footerText: 'T&Cs Apply',
+    width: 300,
+    height: 250,
+    customStyles: {
+      container: {
+        padding: '15px'
+      },
+      logo: {
+        width: '60px',
+        height: 'auto',
+        marginBottom: '5px'
+      },
+      mainText: {
+        fontSize: '32px',
+        lineHeight: '1',
+        fontWeight: 600,
+        marginTop: '5px',
+        maxWidth: '100px'
+      },
+      subtitle: {
+        container: {
+          marginTop: '5px'
+        },
+        text: {
+          fontSize: '14px',
+          lineHeight: '1.2'
+        },
+        emphasis: {
+          fontSize: '16px',
+          fontWeight: 600
+        }
+      },
+      ctaButton: {
+        container: {
+          marginTop: '15px'
+        },
+        button: {
+          fontSize: '14px',
+          padding: '8px 16px',
+          borderRadius: '6px'
+        }
+      },
+      footer: {
+        fontSize: '8px',
+        marginTop: '10px',
+        padding: '4px',
+        background: 'linear-gradient(0deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.1) 100%)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+        height: '15px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }
+    },
+    imageControls: {
+      width: 160,
+      height: 160,
+      bottom: -40,
+      right: -30,
+      scale: 1,
+      translateX: 0,
+      translateY: 0,
+      scaleX: -1  // Flipped like in teal banner
+    }
+  }
+
   return (
     <div className="min-h-screen flex flex-col items-center p-8">
-      <div className="flex items-center justify-center gap-8">
-        <div className="relative">
-          <h2 className="absolute -top-16 left-1/2 -translate-x-1/2 text-4xl font-bold p-4 bg-purple-100 rounded-lg shadow-sm z-10">Purple Banner</h2>
-          <div style={{ transform: 'scale(0.75)' }}>
-            <Banner {...purpleBanner} />
+      <div className="flex flex-col gap-20">
+        <div className="flex items-start gap-8">
+          {/* Purple Banner Column with Medium Rectangle */}
+          <div className="flex flex-col gap-20">
+            <div>
+              <div style={{ transform: 'scale(0.75)' }}>
+                <Banner {...purpleBanner} />
+              </div>
+            </div>
+            
+            <div>
+              <Banner {...mediumRectangleBanner} />
+            </div>
           </div>
-        </div>
-        <div className="relative">
-          <h2 className="absolute -top-16 left-1/2 -translate-x-1/2 text-4xl font-bold p-4 bg-blue-100 rounded-lg shadow-sm z-10">Blue Banner</h2>
-          <div style={{ transform: 'scale(0.75)' }}>
-            <Banner {...blueBanner} />
+
+          {/* Blue Banner Column with Medium Rectangle */}
+          <div className="flex flex-col gap-20">
+            <div>
+              <div style={{ transform: 'scale(0.75)' }}>
+                <Banner {...blueBanner} />
+              </div>
+            </div>
+
+            <div>
+              <Banner {...blueRectangleBanner} />
+            </div>
           </div>
-        </div>
-        <div className="relative">
-          <h2 className="absolute -top-16 left-1/2 -translate-x-1/2 text-4xl font-bold p-4 bg-teal-100 rounded-lg shadow-sm z-10">Teal Banner</h2>
-          <div style={{ transform: 'scale(0.75)' }}>
-            <Banner {...tealBanner} />
+
+          {/* Teal Banner Column with Medium Rectangle */}
+          <div className="flex flex-col gap-20">
+            <div>
+              <div style={{ transform: 'scale(0.75)' }}>
+                <Banner {...tealBanner} />
+              </div>
+            </div>
+
+            <div>
+              <Banner {...tealRectangleBanner} />
+            </div>
           </div>
         </div>
       </div>

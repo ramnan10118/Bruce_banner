@@ -1,43 +1,43 @@
 type BannerProps = {
   // Main text content
-  mainText: string      // e.g. "Ride secure and save more!"
+  mainText: string
   
   // Subtitle/description text
   subtitle: {
-    prefix: string        // e.g. "Get up to"
-    emphasis: string      // e.g. "85%"
-    suffix: string        // e.g. "off on bike insurance on ACKO!"
+    prefix: string
+    emphasis: string
+    suffix: string
   }
 
   // Colors
-  backgroundColor: string  // e.g. "#663399" (purple)
-  primaryColor: string    // e.g. "#FFD700" (gold/yellow for text)
-  highlightTextColor: string // e.g. "#FFFFFF" (white text)
+  backgroundColor: string
+  primaryColor: string
+  highlightTextColor: string
 
   // CTA (Call to Action) button
   ctaButton: {
-    text: string         // e.g. "Check now"
-    backgroundColor: string // e.g. "#228B22" (green)
-    textColor: string    // e.g. "#FFFFFF"
-    href: string         // e.g. "#"
+    text: string
+    backgroundColor: string
+    textColor: string
+    href: string
   }
 
   // Images
-  logo?: {              // Optional logo (ACKO logo in top-right)
+  logo?: {
     src: string
     alt: string
   }
-  productImage?: {      // Optional product image (bike in this case)
+  productImage?: {
     src: string
     alt: string
   }
 
   // Optional footer text
-  footerText?: string   // The disclaimer/policy text at bottom
+  footerText?: string
 
   // Layout
-  width?: number        // Banner width in pixels
-  height?: number       // Banner height in pixels
+  width?: number
+  height?: number
 
   // Image controls
   imageControls?: {
@@ -50,7 +50,24 @@ type BannerProps = {
     translateY: number
     scaleX?: number
   }
-} 
+
+  // Custom styles for overriding defaults
+  customStyles?: {
+    container?: React.CSSProperties
+    logo?: React.CSSProperties
+    mainText?: React.CSSProperties
+    subtitle?: {
+      container?: React.CSSProperties
+      text?: React.CSSProperties
+      emphasis?: React.CSSProperties
+    }
+    ctaButton?: {
+      container?: React.CSSProperties
+      button?: React.CSSProperties
+    }
+    footer?: React.CSSProperties
+  }
+}
 
 export default function Banner({
   mainText,
@@ -65,6 +82,7 @@ export default function Banner({
   width = 1080,
   height = 1920,
   imageControls,
+  customStyles = {}
 }: BannerProps) {
   // Function to adjust color brightness
   const adjustBrightness = (color: string, amount: number) => {
@@ -87,18 +105,19 @@ export default function Banner({
         width,
         height,
         background: `linear-gradient(127deg, ${color1} 0%, ${color2} 66%, ${color3} 94%)`,
-        fontFamily: 'EuclidCircularB'
+        fontFamily: 'EuclidCircularB',
+        ...customStyles.container
       }}
     >
       {/* Logo */}
       {logo && (
-        <div className="absolute" style={{ top: 25, right: 27 }}>
-          <img src={logo.src} alt={logo.alt} style={{ width: 170, height: 56 }} />
+        <div className="absolute" style={{ top: 25, right: 27, ...customStyles.logo }}>
+          <img src={logo.src} alt={logo.alt} style={{ width: 170, height: 56, ...customStyles.logo }} />
         </div>
       )}
 
       {/* Main Content */}
-      <div className="relative" style={{ padding: '163px 66px' }}>
+      <div className="relative" style={{ padding: '163px 66px', ...customStyles.container }}>
         {/* Text Content */}
         <div>
           {/* Main Title */}
@@ -108,27 +127,31 @@ export default function Banner({
               fontSize: '112px',
               lineHeight: '1.2',
               fontWeight: 600,
-              color: primaryColor
+              color: primaryColor,
+              ...customStyles.mainText
             }}
           >
             {mainText}
           </h1>
 
           {/* Subtitle */}
-          <p 
-            className="text-white"
-            style={{ 
-              fontSize: '50px',
-              marginTop: '75px',
-              maxWidth: '614px',
-              lineHeight: '1.2',
-              fontWeight: 400
-            }}
-          >
-            {subtitle.prefix}{' '}
-            <span className="font-bold">{subtitle.emphasis}</span>{' '}
-            {subtitle.suffix}
-          </p>
+          <div style={customStyles.subtitle?.container}>
+            <p 
+              className="text-white"
+              style={{ 
+                fontSize: '50px',
+                marginTop: '75px',
+                maxWidth: '614px',
+                lineHeight: '1.2',
+                fontWeight: 400,
+                ...customStyles.subtitle?.text
+              }}
+            >
+              {subtitle.prefix}{' '}
+              <span className="font-bold" style={customStyles.subtitle?.emphasis}>{subtitle.emphasis}</span>{' '}
+              {subtitle.suffix}
+            </p>
+          </div>
         </div>
 
         {/* CTA Button */}
@@ -139,7 +162,8 @@ export default function Banner({
             width: 'fit-content',
             height: 'fit-content',
             position: 'relative',
-            zIndex: 5
+            zIndex: 5,
+            ...customStyles.ctaButton?.container
           }}
         >
           <button
@@ -158,22 +182,10 @@ export default function Banner({
                 0px 3px 7px rgba(0, 0, 0, 0.2)
               `,
               border: '1px solid rgba(255, 255, 255, 0.1)',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              ...customStyles.ctaButton?.button
             }}
           >
-            {/* Overlay gradient for 3D effect */}
-            <div 
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                height: '50%',
-                background: 'linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 100%)',
-                borderTopLeftRadius: '51px',
-                borderTopRightRadius: '51px'
-              }}
-            />
             <span style={{ position: 'relative', zIndex: 1 }}>{ctaButton.text}</span>
           </button>
         </div>
@@ -197,7 +209,7 @@ export default function Banner({
               className="w-full h-full object-contain"
               style={{
                 filter: 'drop-shadow(0px 7px 15px rgba(0, 0, 0, 0.25))',
-                transform: `translateX(${imageControls?.translateX || 150}px) translateY(${imageControls?.translateY || 75}px) scaleX(${imageControls?.scaleX || 1})`,
+                transform: `translateX(${imageControls?.translateX || 150}px) translateY(${imageControls?.translateY || 75}px) scaleX(${imageControls?.scaleX || 1})`
               }}
             />
           </div>
@@ -216,7 +228,8 @@ export default function Banner({
             padding: '15px',
             background: 'linear-gradient(0deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.1) 100%)',
             borderTop: '1px solid rgba(255, 255, 255, 0.2)',
-            zIndex: 10
+            zIndex: 10,
+            ...customStyles.footer
           }}
         >
           <p 
@@ -226,7 +239,8 @@ export default function Banner({
               color: 'rgba(255, 255, 255, 0.8)',
               textAlign: 'center',
               maxWidth: '90%',
-              margin: '0 auto'
+              margin: '0 auto',
+              ...customStyles.footer
             }}
           >
             {footerText}
